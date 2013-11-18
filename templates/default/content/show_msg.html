@@ -1,0 +1,133 @@
+{template "content","header"}
+<link href="/czz/statics/css/show_msg.css" rel="stylesheet" type="text/css">
+<div class="main">
+	<div class="col-left">
+    	<div class="crumbs"><a href="{siteurl($siteid)}">首页</a><span> &gt; </span>{catpos($catid)} 正文</div>
+        <div id="Article" style="padding-bottom:20px">
+        	<h2>{$title}<br />
+<span>状态：已处理&nbsp;&nbsp;&nbsp;查看：</span><span id="hits"></span></h2>
+            <p style="margin:30px auto;width:800px;"><strong>{$username}</strong> <!-- <button style="font-size:12px;">站内信</button> --> 留言于 {$inputtime}&nbsp;&nbsp;&nbsp;<strong>受理部门：{$department}</strong><!-- <button style="font-size:12px;">站内信</button> --></p>
+			<div class="content">
+			{if $allow_visitor==1}
+				{$content}
+				<!--内容关联投票-->
+				{if $voteid}<script language="javascript" src="{APP_PATH}index.php?m=vote&c=index&a=show&action=js&subjectid={$voteid}&type=2"></script>{/if}
+			{else}
+			{/if}
+			</div>
+{if $titles}
+<fieldset>
+	<legend class="f14">本文导航</legend><ul class="list blue row-2">
+{loop $titles $r}
+	<li>{$n}、<a href="{$r[url]}">{$r[title]}</a></li>
+{/loop}
+</ul>
+</fieldset>
+{/if}
+			<div id="pages" class="text-c">{$pages}</div>
+          <div class="bk15"></div>
+      </div>
+
+      <div class="bk10"></div>
+		<?php
+			$isDepartment = false;
+			$_username = param::get_cookie('_username');
+			if($_username==$department)
+				$isDepartment = true;
+			$commentid = id_encode("content_$catid",$id,$siteid);
+		?>
+      {if $allow_comment && $isDepartment && module_exists('comment')}
+      <iframe src="{APP_PATH}index.php?m=comment&c=index&a=init&commentid={id_encode("content_$catid",$id,$siteid)}&iframe=1" width="100%" height="100%" id="comment_iframe" frameborder="0" scrolling="no"></iframe>
+
+      {/if}
+      <style type="text/css">
+      	.comment{
+	      	width: 800px;
+			margin: 0 auto;
+			zoom: 1;
+			padding: 8px 15px;
+      	}
+      	h5{
+	      	font-size: 14px;
+      	}
+      	.comment .inner-content{
+	      	font-size: 14px;
+			background: #f6f9fb;
+			border: 1px solid #c4d5df;
+			zoom: 1;
+			padding: 8px 10px;
+			margin: 5px 0;
+      	}
+      	.rt{
+	      	float: right;
+      	}
+      </style>
+      <?php if(!$isDepartment): ?>
+      {pc:comment action="lists" commentid="$commentid" siteid="$siteid" page="$page" }
+			<div class="comment">
+			{loop $data $r}
+				<?php //var_dump($r); ?>
+			    <h5 class="title fn"> <font color="#FF0000">{date("Y-m-d, H:i:s",$r[creat_at])}</font> {$r[username]} </h5>
+			    <div class="inner-content">{$r[content]}	<div class="rt"><a href="javascript:void(0)" onclick="support(6, '$commentid')">支持</a>（<font id="support_6">0</font>）
+				</div>
+				<div id="reply_6" style="display:none"></div>
+				</div>
+			    <div class="bk30 hr mb8"></div>
+			{/loop}
+			</div>
+	  {/pc}
+      <?php endif; ?>
+  </div>
+
+</div>
+<script type="text/javascript">
+<!--
+	function show_ajax(obj) {
+		var keywords = $(obj).text();
+		var offset = $(obj).offset();
+		var jsonitem = '';
+		$.getJSON("{APP_PATH}index.php?m=content&c=index&a=json_list&type=keyword&modelid={$modelid}&id={$id}&keywords="+encodeURIComponent(keywords),
+				function(data){
+				var j = 1;
+				var string = "<div class='point key-float'><div style='position:relative'><div class='arro'></div>";
+				string += "<a href='JavaScript:;' onclick='$(this).parent().parent().remove();' hidefocus='true' class='close'><span>关闭</span></a><div class='contents f12'>";
+				if(data!=0) {
+				  $.each(data, function(i,item){
+					j = i+1;
+					jsonitem += "<a href='"+item.url+"' target='_blank'>"+j+"、"+item.title+"</a><BR>";
+
+				  });
+					string += jsonitem;
+				} else {
+					string += '没有找到相关的信息！';
+				}
+					string += "</div><span class='o1'></span><span class='o2'></span><span class='o3'></span><span class='o4'></span></div></div>";
+					$(obj).after(string);
+					$('.key-float').mouseover(
+						function (){
+							$(this).siblings().css({"z-index":0})
+							$(this).css({"z-index":1001});
+						}
+					)
+					$(obj).next().css({ "left": +offset.left-100, "top": +offset.top+$(obj).height()+12});
+				});
+	}
+
+	function add_favorite(title) {
+		$.getJSON('{APP_PATH}api.php?op=add_favorite&title='+encodeURIComponent(title)+'&url='+encodeURIComponent(location.href)+'&'+Math.random()+'&callback=?', function(data){
+			if(data.status==1)	{
+				$("#favorite").html('收藏成功');
+			} else {
+				alert('请登录');
+			}
+		});
+	}
+
+$(function(){
+  $('#Article .content img').LoadImage(true, 660, 660,'{IMG_PATH}s_nopic.gif');
+})
+//-->
+</script>
+
+<script language="JavaScript" src="{APP_PATH}api.php?op=count&id={$id}&modelid={$modelid}"></script>
+{template "content","footer"}

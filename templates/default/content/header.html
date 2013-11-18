@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>蚕庄镇党建网络问政</title>
+<link href="/czz/statics/css/index.css" rel="stylesheet" type="text/css">
+<script src="/czz/statics/js/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function(){
+	$ss = $('#simpleSlide');
+	$animate = $ss.find('.slide-inner');
+	 $ss.find('.slide-bt').on('click','li:not(".active")',function(e){
+		 $animate.stop(true,true);
+		 $target = $(this);
+		 $now    = $target.siblings('.active');
+		 $area   = $('.slide-bt li');
+		 $title  = $('.slide-title');
+		 var next  = $target.data('slide-to');
+		 var now   = $now.data('slide-to');
+		 var title = $target.closest('#simpleSlide').find('.slide-inner a img').eq(next).attr('alt');
+		 $animate.animate({
+			left: '-='+294*(next-now),
+			  }, 500, function() {
+				$now.removeClass('active');
+				$target.addClass('active');
+				$title.html(title);
+			  });
+		 })
+})
+</script>
+</head>
+
+<body>
+
+<div class="wrap">
+    <div class="wrapper">
+        <div class="nav">
+
+        <map>
+    	{pc:content action="category" catid="0" num="25" siteid="$siteid" order="listorder ASC"}
+        	<ul>
+        	<li><a href="{siteurl($siteid)}" target="_blank"><img class="home-icon" src="{IMG_PATH}/home.png">&nbsp;首&nbsp;页</a></li>
+			{loop $data $r}
+			<li><a href="{$r[url]}"><span>{$r[catname]}</span></a></li>
+			{/loop}
+            </ul>
+        {/pc}
+        </map>
+        </div>

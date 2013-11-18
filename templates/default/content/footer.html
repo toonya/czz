@@ -1,0 +1,40 @@
+<!--<div class="footer">
+<p class="info">
+{pc:content action="category" catid="1" num="15" siteid="$siteid" order="listorder ASC"}
+{loop $data $r}
+<a href="{$r[url]}" target="_blank">{$r[catname]}</a> |  
+{/loop}
+{/pc}
+<a href="{APP_PATH}index.php?m=link" target="_blank">友情链接</a>
+<br />
+Powered by <strong><a href="http://www.phpcms.cn" target="_blank">PHPCMS</a></strong> <em>{get_pc_version(1)}</em> &copy; 2011 <img src="{IMG_PATH}copyright.gif"/>{tjcode()}{php echo runhook('glogal_footer')}
+</p>
+</div>
+<script type="text/javascript">
+$(function(){
+	$(".picbig").each(function(i){
+		var cur = $(this).find('.img-wrap').eq(0);
+		var w = cur.width();
+		var h = cur.height();
+	   $(this).find('.img-wrap img').LoadImage(true, w, h,'{IMG_PATH}msg_img/loading.gif');
+	});
+})
+</script>
+</body>
+</html>-->
+
+<!--以上为phpcms的默认footer-->
+</div>
+<div class="footer">
+            <p>友情链接：<a href="" target="_blank">招远蚕庄政府网</a></p> 
+            <p><a href="" target="_blank">关于我们</a>|
+               <a href="" target="_blank">联系方式</a>| 
+               <a href="" target="_blank">新闻中心</a>
+            </p>
+            <p>服务热线：400-188-6666 传真：023-63866338  Copyright 2013 蚕庄镇党建问政 版权所有 ICP备10202274-1号 </p>
+        </div>
+        
+    </div><!--/wrapper-->
+</div><!--/wrap-->
+</body>
+</html>

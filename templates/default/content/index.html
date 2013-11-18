@@ -1,0 +1,306 @@
+{template "content","header"}
+<!--main-->
+<div class="content-home">
+            <div class="column-0">
+                <div id="simpleSlide" class="column-0-slider column-border">
+                	<div class="slide-wrapper">
+                        <div class="slide-inner">
+                           {pc:content action="position" posid="1" num="5" thumb="1"}
+                           {loop $data $r}
+                       <ul>
+                           <li><a href="{$r[url]}"> <img src="{$r[thumb]}" width="294px" height="203px" alt="{$r[title]}"></a>
+                           <a href="{$r[url]}" title="{$r[title]}"></a>
+                          </li>
+                       </ul>
+                         {/loop}
+                        {/pc}
+                          </div>
+                      </div>
+                      <div class="slide-bt">
+                      	<ul>
+                        	<li data-slide-to="0" class="active">1</li>
+                        	<li data-slide-to="1">2</li>
+                        	<li data-slide-to="2">3</li>
+                        	<li data-slide-to="3">4</li>
+                        	<li data-slide-to="4">5</li>
+                        </ul>
+                      </div>
+                      <p class="slide-title"></p>
+                </div>
+
+                <div class="column-0-news column-border">
+                 <ul style="padding-left:6px;">
+                {pc:content  action="lists" catid="10" order="id DESC" num="8"}
+				 <ul>
+				 {loop $data $key $val}
+				 <li> <a href="{$val['url']}">{$val['title']}</a></li>
+				 {/loop}
+				 </ul>
+				 {/pc}
+
+                 <span class="more"><a href="">更多>></a></span>
+                </div>
+                <div class="column-0-login">
+                    <button class="btn-leave-a-msg" onClick="window.location.href='{APP_PATH}index.php?m=member&c=index&a=login&forward={urlencode(($comment[url] ? $comment[url] : $url))}'">我要留言</button>
+                    <button class="btn-login" onClick="window.location.href='{APP_PATH}index.php?m=member&c=index&a=login&forward={urlencode(($comment[url] ? $comment[url] : $url))}'">政府人员登录</button>
+                    <p style="margin-top:20px;"><img src="/czz/statics/images/phone.png">&nbsp;民生热线：8322001</p>
+                    <p><img src="/czz/statics/images/mail.png">&nbsp;E-mail:czzgb123@163.com</p>
+                </div>
+            </div>
+            <div class="column-1">
+                <div class="column-header">
+                    <span class="column-name">解答专区</span>
+                    <span style="margin-right:-10px; margin-left:20px;">栏目：</span>
+
+                    <select>
+                       {pc:content action="category" catid="$top_parentid" num="15" siteid="$siteid" order="listorder ASC"}
+			    {loop $data $r}
+			           <option>{$r[catname]}</option>
+			          {/loop}
+
+                    </select>
+                    <span>关键词：</span><input type="text" name="info[keywords]"/>
+                    <label><a href="{APP_PATH}index.php?m=content&c=search&catid={$r[catid]}">搜索</a></label>
+                    {/pc}
+                    <span style="margin-right:-10px; margin-left:20px;">部门：</span>
+                    <select>
+                        <option>党委办</option>
+                        <option>政府办</option>
+                        <option>政工办</option>
+                        <option>电教中心</option>
+                        <option>计生办</option>
+                        <option>民政办</option>
+                        <option>经贸办</option>
+                        <option>招商办</option>
+                        <option>人大办</option>
+                        <option>统计办</option>
+                        <option>水利站</option>
+                        <option>林果办</option>
+                        <option>农办</option>
+                        <option>财政所</option>
+                        <option>经审办</option>
+                        <option>镇建办</option>
+                        <option>黄金站</option>
+                        <option>信访办</option>
+                        <option>安监办</option>
+                        <option>综治办</option>
+                        <option>司法所</option>
+                        <option>610办公室工作责任制</option>
+                    </select>
+
+           </div><!--//column-header-->
+                <div class="column-1-left">
+                  <div style="width:100%; margin-top:7px;" class="column-border">
+                    <table>
+                        <tr>
+                            <td class="first" style="background:#ffcc99;">
+                                咨询求助
+                            </td>
+                            <td>
+                                <table class="table-1">
+                               {pc:content  action="lists" catid="69"  order="listorder DESC" num="6"}
+                               {loop $data $r}
+                                   <tr onclick="parent.location='{$r[url]}'">
+                                        <td>{$r[title]}</td>
+                                        <td width="80px">{date('Y-m-d',$r[inputtime])}</td>
+                                        <td width="120px">{$r[department]}</td>
+                                        <td style="color:#F00" width="80px" data-state=""></td>
+                                    </tr>
+                                {/loop}
+                                {/pc}
+                                </table>
+                            </td>
+                        </tr>
+                    </table><!--咨询求助-->
+
+                    <table>
+                        <tr>
+                            <td class="first" style="background:#6CC">
+                                投诉举报
+                            </td>
+                            <td>
+                                <table class="table-2">
+                                {pc:content  action="lists" catid="68"  order="listorder DESC" num="6"}
+                                {loop $data $r}
+                                    <tr onclick="parent.location='{$r[url]}'">
+                                        <td>{$r[title]}</td>
+                                        <td width="80px">{date('Y-m-d',$r[inputtime])}</td>
+                                        <td width="120px">{$r[department]}</td>
+                                        <td style="color:#F00" width="80px" data-state=""></td>
+                                    </tr>
+                                 {/loop}
+                                {/pc}
+                                </table>
+                            </td>
+                        </tr>
+                    </table><!--投诉举报-->
+
+                    <table>
+                        <tr>
+                            <td class="first" style="background:#0c9">
+                                建言献策
+                            </td>
+                            <td>
+                                <table class="table-3">
+                                 {pc:content  action="lists" catid="70"  order="listorder DESC" num="6"}
+                                 {loop $data $r}
+                                    <tr onclick="parent.location='{$r[url]}'">
+                                        <td>{$r[title]}</td>
+                                        <td width="80px">{date('Y-m-d',$r[inputtime])}</td>
+                                        <td width="120px">{$r[department]}</td>
+                                        <td style="color:#F00" width="80px" data-state=""></td>
+                                    </tr>
+                                  {/loop}
+                                  {/pc}
+                                </table>
+                            </td>
+                        </tr>
+                    </table><!--建言献策-->
+                  </div> <!--tables-->
+                  <div class="departments-list column-border">
+                      <p class="stitle">&nbsp;&nbsp;部门直通车</p>
+                      <ul>
+
+                          <li><a href="/czz/html/zhanban/dangweiban/" target="_blank">党委办</a></li>
+                          <li><a href="/czz/html/zhanban/zhengfuban/" target="_blank">政府办</a></li>
+                          <li><a href="/czz/html/zhanban/zhenggongban/" target="_blank">政工办</a></li>
+                          <li><a href="/czz/html/zhanban/dianjiaozhongxin/" target="_blank">电教中心</a></li>
+                          <li><a href="/czz/html/zhanban/jishengban/" target="_blank">计生办</a></li>
+                          <li><a href="/czz/html/zhanban/minzhengban/" target="_blank">民政办</a></li>
+                          <li><a href="/czz/html/zhanban/jingmaoban/" target="_blank">经贸办</a></li>
+                          <li><a href="/czz/html/zhanban/zhaoshangban/" target="_blank">招商办</a></li>
+                          <li><a href="/czz/html/zhanban/rendaban/" target="_blank">人大办</a></li>
+                          <li><a href="/czz/html/zhanban/tongjiban/" target="_blank">统计办</a></li>
+                          <li><a href="/czz/html/zhanban/shuilizhan/" target="_blank">水利站</a></li>
+                          <li><a href="/czz/html/zhanban/linguoban/" target="_blank">林果办</a></li>
+                          <li><a href="/czz/html/zhanban/nongban/" target="_blank">农办</a></li>
+                          <li><a href="/czz/html/zhanban/caizhengsuo/" target="_blank">财政所</a></li>
+                          <li><a href="/czz/html/zhanban/jingshenban/" target="_blank">经审办</a></li>
+                          <li><a href="/czz/html/zhanban/zhenjianban/" target="_blank">镇建办</a></li>
+                          <li><a href="/czz/html/zhanban/huangjinban/" target="_blank">黄金站</a></li>
+                          <li><a href="/czz/html/zhanban/anjianban/" target="_blank">安监办</a></li>
+                          <li><a href="/czz/html/zhanban/xinfangban/" target="_blank">信访办</a></li>
+                          <li><a href="/czz/html/zhanban/sifasuo/" target="_blank">司法所</a></li>
+                          <li><a href="/czz/html/zhanban/zongzhiban/" target="_blank">综治办</a></li>
+                          <li style="width:150px;"><a href="/czz/html/zhanban/610office/" target="_blank">610办公室工作责任制</a></li></ul>
+                  </div><!--部门直通车-->
+                </div><!--//column-1-left-->
+
+                <div class="column-1-right">
+                    <div class="zuixinhuifu column-border">
+                        <p class="stitle">&nbsp;&nbsp;最新回复</p>
+                        <ul style="padding-left:6px;">
+                         {pc:comment  action="bang"  num="7"}
+                         {loop $data $r}
+            	        <li>
+                       <a href="{$r[url]}" title="{$r[title]}">{$r[title]}</a>({$r[total]})
+                        </li>
+                          {/loop}
+                          {/pc}
+                        </ul>
+                    </div><!--//最新回复-->
+                    <div class="guanzhupaixing column-border rank">
+                        <p class="stitle">&nbsp;&nbsp;关注排行</p>
+                          <ul style="padding-left:26px;">
+                         {pc:content  action="hits" catid="$r[catid]"  order="weekviews DESC" num="10"}
+                         {loop $data $r}
+            	        <li>
+                       <a href="{$r[url]}" title="{$r[title]}">{$r[title]}</a>
+                        </li>
+                          {/loop}
+                          {/pc}
+                        </ul>
+                    </div>
+                    <div class="huifupaixing column-border rank">
+                        <p class="stitle">&nbsp;&nbsp;回复排行</p>
+                        <ul>
+                            <li><a href="">党委办</a></li>
+                            <li><a href="">政府办</a></li>
+                            <li><a href="">政工办</a></li>
+                            <li><a href="">电教中心</a></li>
+                            <li><a href="">计生办</a></li>
+                            <li><a href="">民政办</a></li>
+                            <li><a href="">经贸办</a></li>
+                        </ul>
+                    </div><!--//回复排行-->
+                </div><!--//column-1-right-->
+            </div>
+
+
+            <!--党建动态-->
+            <div class="column-2">
+                <div class="column-header">
+                    <span class="column-name">党建动态</span>
+                </div><!--//column-header-->
+
+                <div class="column-2-left" style="width:100%">
+                  <div class="bumengonggao column-border">
+                      <p class="stitle">&nbsp;&nbsp;非公党建</p>
+                   {pc:content  action="lists" catid=13 order="listorder ASC" num="7"}
+                <ul>
+                   {loop $data $r}
+                     <li> <a href="{$r[url]}">{$r[title]}</a></li>
+                   {/loop}
+                </ul>
+                {/pc}
+                      <span class="more"><a href="{APP_PATH}index.php?m=content&c=index&a=lists&catid=13">更多>></a></span>
+                  </div>
+                  <div class="gongzuodongtai column-border">
+                      <p class="stitle">&nbsp;&nbsp;驻村蹲点、双管双责</p>
+                      <ul>
+                      {pc:content  action="lists" catid="14"  order="listorder ASC" num="7"}
+                      {loop $data $r}
+
+                          <li><a href="{$r[url]}" target="_blank">{$r[title]}</a></li>
+                          {/loop}
+                          {/pc}
+                      </ul>
+                      <span class="more"><a href="{APP_PATH}index.php?m=content&c=index&a=lists&catid=14">更多>></a></span>
+                  </div>
+                  <div class="photos-list column-border">
+                      <p class="stitle">&nbsp;&nbsp;党建展示</p>
+                      {pc:content action="lists" catid="10" num="14" where="thumb !=''" order="id ASC"}
+                      {loop $data $r}
+                       <ul>
+                           <li>       <a href="{$r[url]}"> <img src="{$r[thumb]}"></a>
+                           <a href="{$r[url]}" title="{$r[title]}">{str_cut($r[title],40,'')}...</a></li>
+
+                       </ul>
+                        {/loop}
+                        {/pc}
+                      <span class="more"><a href="{APP_PATH}index.php?m=content&c=index&a=lists&catid=10">更多>></a></span>
+                  </div><!--党建展示-->
+
+                </div><!--//column-2-left-->
+
+                <!--<div class="column-2-right">
+                    <div class="huodongzhuanti column-border">
+                        <p class="stitle">&nbsp;&nbsp;活动专题</p>
+                        <ul style="padding-left:6px;">
+                        {pc:content  action="lists" catid="15"  order="listorder DESC" num="10"}
+                             {loop $data $r}
+            	       <li>
+                       <a href="{$r[url]}" title="{$r[title]}">{$r[title]}</a>
+                        </li>
+                          {/loop}
+                          {/pc}
+                        </ul>
+                        <span class="more"><a href="{APP_PATH}index.php?m=content&c=index&a=lists&catid=15">更多>></a></span>
+                    </div><!--//活动专题
+                </div><!--//column-2-right-->
+            </div>
+        </div><!--/content-home-->
+
+        <div class="footer">
+            <p>友情链接：<a href="" target="_blank">招远蚕庄政府网</a></p>
+            <p><a href="" target="_blank">关于我们</a>|
+               <a href="" target="_blank">联系方式</a>|
+               <a href="" target="_blank">新闻中心</a>
+            </p>
+            <p>服务热线：400-188-6666 传真：023-63866338  Copyright 2013 蚕庄镇党建问政 版权所有 ICP备10202274-1号 </p>
+        </div>
+
+    </div><!--/wrapper-->
+</div><!--/wrap-->
+</body>
+</html>
