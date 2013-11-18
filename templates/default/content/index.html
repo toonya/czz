@@ -30,7 +30,7 @@
 
                 <div class="column-0-news column-border">
                  <ul style="padding-left:6px;">
-                {pc:content  action="lists" catid="10" order="id DESC" num="8"}
+                {pc:content  action="lists" catid="15" order="id DESC" num="8"}
 				 <ul>
 				 {loop $data $key $val}
 				 <li> <a href="{$val['url']}">{$val['title']}</a></li>
@@ -202,13 +202,13 @@
                     <div class="guanzhupaixing column-border rank">
                         <p class="stitle">&nbsp;&nbsp;关注排行</p>
                           <ul style="padding-left:26px;">
-                         {pc:content  action="hits" catid="$r[catid]"  order="weekviews DESC" num="10"}
-                         {loop $data $r}
-            	        <li>
-                       <a href="{$r[url]}" title="{$r[title]}">{$r[title]}</a>
-                        </li>
-                          {/loop}
-                          {/pc}
+                         {pc:content  action="hits" catid="15" order="weekviews DESC" num="10"}
+						 <ul>
+						 {loop $data $key $val}
+						 <li> <a href="{$val['url']}">{$val['title']}</a></li>
+						 {/loop}
+						 </ul>
+						 {/pc}
                         </ul>
                     </div>
                     <div class="huifupaixing column-border rank">
