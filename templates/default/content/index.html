@@ -104,7 +104,15 @@
                                         <td>{$r[title]}</td>
                                         <td width="80px">{date('Y-m-d',$r[inputtime])}</td>
                                         <td width="120px">{$r[department]}</td>
-                                        <td style="color:#F00" width="80px" data-state=""></td>
+                                        <?php $commentid = id_encode("content_$r[catid]",$r[id],$siteid);
+                                        ?>
+                                        {pc:comment action="get_comment" commentid="$commentid"}
+										 	<?php if($data[total]):?>
+										 		<td style="color:#090" width="80px" data-state="">[已处理]</td>
+										 	<?php else:?>
+										 		<td style="color:#F00" width="80px" data-state="">[待处理]</td>
+										 	<?php endif;?>
+										 {/pc}
                                     </tr>
                                 {/loop}
                                 {/pc}
@@ -122,13 +130,21 @@
                                 <table class="table-2">
                                 {pc:content  action="lists" catid="68"  order="listorder DESC" num="6"}
                                 {loop $data $r}
-                                    <tr onclick="parent.location='{$r[url]}'">
+                                   <tr onclick="parent.location='{$r[url]}'">
                                         <td>{$r[title]}</td>
                                         <td width="80px">{date('Y-m-d',$r[inputtime])}</td>
                                         <td width="120px">{$r[department]}</td>
-                                        <td style="color:#F00" width="80px" data-state=""></td>
+                                        <?php $commentid = id_encode("content_$r[catid]",$r[id],$siteid);
+                                        ?>
+                                        {pc:comment action="get_comment" commentid="$commentid"}
+										 	<?php if($data[total]):?>
+										 		<td style="color:#090" width="80px" data-state="">[已处理]</td>
+										 	<?php else:?>
+										 		<td style="color:#F00" width="80px" data-state="">[待处理]</td>
+										 	<?php endif;?>
+										 {/pc}
                                     </tr>
-                                 {/loop}
+                                {/loop}
                                 {/pc}
                                 </table>
                             </td>
@@ -144,13 +160,21 @@
                                 <table class="table-3">
                                  {pc:content  action="lists" catid="70"  order="listorder DESC" num="6"}
                                  {loop $data $r}
-                                    <tr onclick="parent.location='{$r[url]}'">
+                                   <tr onclick="parent.location='{$r[url]}'">
                                         <td>{$r[title]}</td>
                                         <td width="80px">{date('Y-m-d',$r[inputtime])}</td>
                                         <td width="120px">{$r[department]}</td>
-                                        <td style="color:#F00" width="80px" data-state=""></td>
+                                        <?php $commentid = id_encode("content_$r[catid]",$r[id],$siteid);
+                                        ?>
+                                        {pc:comment action="get_comment" commentid="$commentid"}
+										 	<?php if($data[total]):?>
+										 		<td style="color:#090" width="80px" data-state="">[已处理]</td>
+										 	<?php else:?>
+										 		<td style="color:#F00" width="80px" data-state="">[待处理]</td>
+										 	<?php endif;?>
+										 {/pc}
                                     </tr>
-                                  {/loop}
+                                {/loop}
                                   {/pc}
                                 </table>
                             </td>
