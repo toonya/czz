@@ -6,7 +6,7 @@
 	{template 'member', 'left'}
 	<?php
 		$isDepartmentUser = false;
-		if($memberinfo[groupid]==9)
+		if($_REQUEST[isdepartment])
 			$isDepartmentUser = true;
 	?>
 	<?php
