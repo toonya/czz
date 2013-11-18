@@ -1,0 +1,1 @@
+cd /srv/www/czz/phpcms && /usr/lib/git-core/git pull && cd -
