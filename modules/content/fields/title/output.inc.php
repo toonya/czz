@@ -1,4 +1,4 @@
 	function title($field, $value) {
-		$value = new_html_special_chars($value);
+		$value = htmlspecialchars($value);
 		return $value;
 	}

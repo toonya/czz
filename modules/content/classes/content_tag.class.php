@@ -52,7 +52,7 @@ class content_tag {
 			return $this->db->count($sql);
 		}
 	}
-	
+
 	/**
 	 * 列表页标签
 	 * @param $data
@@ -76,7 +76,7 @@ class content_tag {
 		$order = $data['order'];
 
 		$return = $this->db->select($sql, '*', $data['limit'], $order, '', 'id');
-						
+
 		//调用副表的数据
 		if (isset($data['moreinfo']) && intval($data['moreinfo']) == 1) {
 			$ids = array();
@@ -100,7 +100,7 @@ class content_tag {
 		}
 		return $return;
 	}
-	
+
 	/**
 	 * 相关文章标签
 	 * @param $data
@@ -144,7 +144,7 @@ class content_tag {
 		if($data['id']) unset($key_array[$data['id']]);
 		return $key_array;
 	}
-	
+
 	/**
 	 * 排行榜标签
 	 * @param $data
@@ -218,7 +218,7 @@ class content_tag {
 		}
 		return $array;
 	}
-	
+
 	/**
 	 * 推荐位
 	 * @param $data
@@ -269,7 +269,7 @@ class content_tag {
 		$positionlist = getcache('position','commons');
 		$sites = pc_base::load_app_class('sites','admin');
 		$sitelist = $sites->pc_tag_list();
-		
+
 		foreach ($positionlist as $_v) if($_v['siteid'] == get_siteid() || $_v['siteid'] == 0) $poslist[$_v['posid']] = $_v['name'];
 		return array(
 			'action'=>array('lists'=>L('list','', 'content'),'position'=>L('position','', 'content'), 'category'=>L('subcat', '', 'content'), 'relation'=>L('related_articles', '', 'content'), 'hits'=>L('top', '', 'content')),
@@ -282,7 +282,7 @@ class content_tag {
 			'position'=>array(
 				'posid'=>array('name'=>L('posid', '', 'content'),'htmltype'=>'input_select','data'=>$poslist,'validator'=>array('min'=>1)),
 				'catid'=>array('name'=>L('catid', '', 'content'),'htmltype'=>'input_select_category','data'=>array('type'=>0),'validator'=>array('min'=>0)),
-				'thumb'=>array('name'=>L('thumb', '', 'content'), 'htmltype'=>'radio','data'=>array('0'=>L('all_list', '', 'content'), '1'=>L('thumb_list', '', 'content'))),			
+				'thumb'=>array('name'=>L('thumb', '', 'content'), 'htmltype'=>'radio','data'=>array('0'=>L('all_list', '', 'content'), '1'=>L('thumb_list', '', 'content'))),
 				'order'=>array('name'=>L('sort', '', 'content'), 'htmltype'=>'select','data'=>array('listorder DESC'=>L('listorder_desc', '', 'content'),'listorder ASC'=>L('listorder_asc', '', 'content'),'id DESC'=>L('id_desc', '', 'content'))),
 			),
 			'category'=>array(
@@ -299,7 +299,8 @@ class content_tag {
 				'catid'=>array('name'=>L('catid', '', 'content'), 'htmltype'=>'input_select_category', 'data'=>array('type'=>0), 'validator'=>array('min'=>1)),
 				'day'=>array('name'=>L('day_select', '', 'content'), 'htmltype'=>'input', 'data'=>array('type'=>0)),
 			),
-				
+
 		);
 	}
 }
+

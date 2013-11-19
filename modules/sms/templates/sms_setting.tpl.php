@@ -4,7 +4,7 @@
 ?>
 <div class="pad-10">
 <div class="explain-col search-form">
-<?php echo get_smsnotice('setting');?>
+登录phpcms官方网站申请sms短信服务，获取产品id和密钥，获取地址：<a href="http://sms.phpcms.cn/" target="_blank">http://sms.phpcms.cn/</a>
 </div>
 <div class="common-form">
 <form name="myform" action="?m=sms&c=sms&a=sms_setting" method="post" id="myform">
