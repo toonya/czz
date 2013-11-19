@@ -33,7 +33,7 @@
                 {pc:content  action="lists" catid="15" order="id DESC" num="8"}
 				 <ul>
 				 {loop $data $key $val}
-				 <li> <a href="{$val['url']}">{$val['title']}</a></li>
+				 <li> <a href="{$val['url']}">{str_cut($val['title'],74,'')}...</a></li>
 				 {/loop}
 				 </ul>
 				 {/pc}
@@ -42,9 +42,10 @@
                 </div>
                 <div class="column-0-login">
                     <button class="btn-leave-a-msg" onClick="window.location.href='{APP_PATH}index.php?m=member&c=index&a=login&forward={urlencode(($comment[url] ? $comment[url] : $url))}'">我要留言</button>
-                    <button class="btn-login" onClick="window.location.href='{APP_PATH}index.php?m=member&c=index&a=login&forward={urlencode(($comment[url] ? $comment[url] : $url))}'">政府人员登录</button>
+<!--                    <button class="btn-login" onClick="window.location.href='{APP_PATH}index.php?m=member&c=index&a=login&forward={urlencode(($comment[url] ? $comment[url] : $url))}'">政府人员登录</button>-->                   
                     <p style="margin-top:20px;"><img src="/czz/statics/images/phone.png">&nbsp;民生热线：8322001</p>
                     <p><img src="/czz/statics/images/mail.png">&nbsp;E-mail:czzgb123@163.com</p>
+                    <img style="margin-top:25px;" src="/czz/statics/images/id.png">
                 </div>
             </div>
             <div class="column-1">
@@ -60,7 +61,7 @@
 
                     </select>
                     <span>关键词：</span><input type="text" name="info[keywords]"/>
-                    <label><a href="{APP_PATH}index.php?m=content&c=search&catid={$r[catid]}">搜索</a></label>
+                    <button><a href="{APP_PATH}index.php?m=content&c=search&catid={$r[catid]}">搜索</a></button>
                     {/pc}
                     <span style="margin-right:-10px; margin-left:20px;">部门：</span>
                     <select>
@@ -91,7 +92,7 @@
            </div><!--//column-header-->
                 <div class="column-1-left">
                   <div style="width:100%; margin-top:7px;" class="column-border">
-                    <table>
+                    <table style="border:2px solid #fc9;">
                         <tr>
                             <td class="first" style="background:#ffcc99;">
                                 咨询求助
@@ -102,15 +103,15 @@
                                {loop $data $r}
                                    <tr onclick="parent.location='{$r[url]}'">
                                         <td>{$r[title]}</td>
-                                        <td width="80px">{date('Y-m-d',$r[inputtime])}</td>
-                                        <td width="120px">{$r[department]}</td>
+                                        <td width="75px">{date('Y-m-d',$r[inputtime])}</td>
+                                        <td width="80px">{$r[department]}</td>
                                         <?php $commentid = id_encode("content_$r[catid]",$r[id],$siteid);
                                         ?>
                                         {pc:comment action="get_comment" commentid="$commentid"}
 										 	<?php if($data[total]):?>
-										 		<td style="color:#090" width="80px" data-state="">[已处理]</td>
+										 		<td style="color:#090" width="60px" data-state="">[已处理]</td>
 										 	<?php else:?>
-										 		<td style="color:#F00" width="80px" data-state="">[待处理]</td>
+										 		<td style="color:#F00" width="60px" data-state="">[待处理]</td>
 										 	<?php endif;?>
 										 {/pc}
                                     </tr>
@@ -121,7 +122,7 @@
                         </tr>
                     </table><!--咨询求助-->
 
-                    <table>
+                    <table style="border:2px solid #6cc;">
                         <tr>
                             <td class="first" style="background:#6CC">
                                 投诉举报
@@ -132,15 +133,15 @@
                                 {loop $data $r}
                                    <tr onclick="parent.location='{$r[url]}'">
                                         <td>{$r[title]}</td>
-                                        <td width="80px">{date('Y-m-d',$r[inputtime])}</td>
-                                        <td width="120px">{$r[department]}</td>
+                                        <td width="75px">{date('Y-m-d',$r[inputtime])}</td>
+                                        <td width="80px">{$r[department]}</td>
                                         <?php $commentid = id_encode("content_$r[catid]",$r[id],$siteid);
                                         ?>
                                         {pc:comment action="get_comment" commentid="$commentid"}
 										 	<?php if($data[total]):?>
-										 		<td style="color:#090" width="80px" data-state="">[已处理]</td>
+										 		<td style="color:#090" width="60px" data-state="">[已处理]</td>
 										 	<?php else:?>
-										 		<td style="color:#F00" width="80px" data-state="">[待处理]</td>
+										 		<td style="color:#F00" width="60px" data-state="">[待处理]</td>
 										 	<?php endif;?>
 										 {/pc}
                                     </tr>
@@ -151,7 +152,7 @@
                         </tr>
                     </table><!--投诉举报-->
 
-                    <table>
+                    <table style="border:2px solid #0c9;">
                         <tr>
                             <td class="first" style="background:#0c9">
                                 建言献策
@@ -162,15 +163,15 @@
                                  {loop $data $r}
                                    <tr onclick="parent.location='{$r[url]}'">
                                         <td>{$r[title]}</td>
-                                        <td width="80px">{date('Y-m-d',$r[inputtime])}</td>
-                                        <td width="120px">{$r[department]}</td>
+                                        <td width="75px">{date('Y-m-d',$r[inputtime])}</td>
+                                        <td width="80px">{$r[department]}</td>
                                         <?php $commentid = id_encode("content_$r[catid]",$r[id],$siteid);
                                         ?>
                                         {pc:comment action="get_comment" commentid="$commentid"}
 										 	<?php if($data[total]):?>
-										 		<td style="color:#090" width="80px" data-state="">[已处理]</td>
+										 		<td style="color:#090" width="60px" data-state="">[已处理]</td>
 										 	<?php else:?>
-										 		<td style="color:#F00" width="80px" data-state="">[待处理]</td>
+										 		<td style="color:#F00" width="60px" data-state="">[待处理]</td>
 										 	<?php endif;?>
 										 {/pc}
                                     </tr>
@@ -214,7 +215,7 @@
                     <div class="zuixinhuifu column-border">
                         <p class="stitle">&nbsp;&nbsp;最新回复</p>
                         <ul style="padding-left:6px;">
-                         {pc:comment  action="bang"  num="7"}
+                         {pc:comment  action="bang"  num="8"}
                          {loop $data $r}
             	        <li>
                        <a href="{$r[url]}" title="{$r[title]}">{$r[title]}</a>({$r[total]})
@@ -225,11 +226,11 @@
                     </div><!--//最新回复-->
                     <div class="guanzhupaixing column-border rank">
                         <p class="stitle">&nbsp;&nbsp;关注排行</p>
-                          <ul style="padding-left:26px;">
-                         {pc:content  action="hits" catid="15" order="weekviews DESC" num="10"}
+                          <ul style="padding-left:0px;">
+                         {pc:content  action="hits" catid="15" order="weekviews DESC" num="9"}
 						 <ul>
 						 {loop $data $key $val}
-						 <li> <a href="{$val['url']}">{$val['title']}</a></li>
+						 <li> <a href="{$val['url']}">{str_cut($val['title'],62,'')}...</a></li>
 						 {/loop}
 						 </ul>
 						 {/pc}
@@ -245,6 +246,8 @@
                             <li><a href="">计生办</a></li>
                             <li><a href="">民政办</a></li>
                             <li><a href="">经贸办</a></li>
+                            <li><a href="">计生办</a></li>
+                            <li><a href="">计生办</a></li>
                         </ul>
                     </div><!--//回复排行-->
                 </div><!--//column-1-right-->
@@ -260,30 +263,30 @@
                 <div class="column-2-left" style="width:100%">
                   <div class="bumengonggao column-border">
                       <p class="stitle">&nbsp;&nbsp;非公党建</p>
-                   {pc:content  action="lists" catid=13 order="listorder ASC" num="7"}
+                   {pc:content  action="lists" catid=14 order="listorder ASC" num="7"}
                 <ul>
                    {loop $data $r}
                      <li> <a href="{$r[url]}">{$r[title]}</a></li>
                    {/loop}
                 </ul>
                 {/pc}
-                      <span class="more"><a href="{APP_PATH}index.php?m=content&c=index&a=lists&catid=13">更多>></a></span>
+                      <span class="more"><a href="{APP_PATH}index.php?m=content&c=index&a=lists&catid=14">更多>></a></span>
                   </div>
                   <div class="gongzuodongtai column-border">
                       <p class="stitle">&nbsp;&nbsp;驻村蹲点、双管双责</p>
                       <ul>
-                      {pc:content  action="lists" catid="14"  order="listorder ASC" num="7"}
+                      {pc:content  action="lists" catid="13"  order="listorder ASC" num="7"}
                       {loop $data $r}
 
                           <li><a href="{$r[url]}" target="_blank">{$r[title]}</a></li>
                           {/loop}
                           {/pc}
                       </ul>
-                      <span class="more"><a href="{APP_PATH}index.php?m=content&c=index&a=lists&catid=14">更多>></a></span>
+                      <span class="more"><a href="{APP_PATH}index.php?m=content&c=index&a=lists&catid=13">更多>></a></span>
                   </div>
                   <div class="photos-list column-border">
                       <p class="stitle">&nbsp;&nbsp;党建展示</p>
-                      {pc:content action="lists" catid="10" num="14" where="thumb !=''" order="id ASC"}
+                      {pc:content action="lists" catid="72" num="14" where="catid='72' && thumb !=''" order="id ASC"}
                       {loop $data $r}
                        <ul>
                            <li>       <a href="{$r[url]}"> <img src="{$r[thumb]}"></a>
