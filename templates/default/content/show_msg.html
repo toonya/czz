@@ -64,7 +64,7 @@
       </style>
       <?php if(!$isDepartment): ?>
       {pc:comment action="lists" commentid="$commentid" siteid="$siteid" page="$page" }
-			<div class="comment" style="padding-bottom:24px;">
+			<div class="comment" style="padding-bottom:48px;">
 			{loop $data $r}
 				<?php //var_dump($r); ?>
 			    <h5 class="title fn"> <font color="#FF0000">{date("Y-m-d, H:i:s",$r[creat_at])}</font> {$r[username]} </h5>
