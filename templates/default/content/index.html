@@ -218,7 +218,7 @@
                          {pc:comment  action="bang"  num="8"}
                          {loop $data $r}
             	        <li>
-                       <a href="{$r[url]}" title="{$r[title]}">{$r[title]}</a>({$r[total]})
+                       <a href="{$r[url]}" title="{$r[title]}">{str_cut($r[title],62,'')}...</a>({$r[total]})
                         </li>
                           {/loop}
                           {/pc}
