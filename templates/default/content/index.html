@@ -38,7 +38,7 @@
 				 </ul>
 				 {/pc}
 
-                 <span class="more"><a href="">更多>></a></span>
+                 <span class="more"><a href="{APP_PATH}index.php?m=content&c=index&a=lists&catid=15">更多>></a></span>
                 </div>
                 <div class="column-0-login">
                     <button class="btn-leave-a-msg" onClick="window.location.href='{APP_PATH}index.php?m=member&c=index&a=login&forward={urlencode(($comment[url] ? $comment[url] : $url))}'">我要留言</button>
@@ -103,7 +103,7 @@
                                {loop $data $r}
                                    <tr onclick="parent.location='{$r[url]}'">
                                         <td>{$r[title]}</td>
-                                        <td width="75px">{date('Y-m-d',$r[inputtime])}</td>
+                                        <!--<td width="75px">{date('Y-m-d',$r[inputtime])}</td>-->
                                         <td width="80px">{$r[department]}</td>
                                         <?php $commentid = id_encode("content_$r[catid]",$r[id],$siteid);
                                         ?>
@@ -133,7 +133,7 @@
                                 {loop $data $r}
                                    <tr onclick="parent.location='{$r[url]}'">
                                         <td>{$r[title]}</td>
-                                        <td width="75px">{date('Y-m-d',$r[inputtime])}</td>
+                                       <!-- <td width="75px">{date('Y-m-d',$r[inputtime])}</td>-->
                                         <td width="80px">{$r[department]}</td>
                                         <?php $commentid = id_encode("content_$r[catid]",$r[id],$siteid);
                                         ?>
@@ -163,7 +163,7 @@
                                  {loop $data $r}
                                    <tr onclick="parent.location='{$r[url]}'">
                                         <td>{$r[title]}</td>
-                                        <td width="75px">{date('Y-m-d',$r[inputtime])}</td>
+                                      <!--  <td width="75px">{date('Y-m-d',$r[inputtime])}</td>-->
                                         <td width="80px">{$r[department]}</td>
                                         <?php $commentid = id_encode("content_$r[catid]",$r[id],$siteid);
                                         ?>
@@ -295,7 +295,7 @@
                        </ul>
                         {/loop}
                         {/pc}
-                      <span class="more"><a href="{APP_PATH}index.php?m=content&c=index&a=lists&catid=10">更多>></a></span>
+                      <span class="more"><a href="{APP_PATH}index.php?m=content&c=index&a=lists&catid=72">更多>></a></span>
                   </div><!--党建展示-->
 
                 </div><!--//column-2-left-->
