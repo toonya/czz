@@ -32,7 +32,7 @@ $(function(){
 		var next  = $target.data('slide-to');
 		var now   = $now.data('slide-to');
 		var title = $target.closest('#simpleSlide').find('.slide-inner a img').eq(next).attr('alt');
-		carousel_current = next;
+		carousel_current = next;  // for circle
 		$animate.animate({
 			left: '-='+294*(next-now),
 			  }, 500, function() {
@@ -40,7 +40,7 @@ $(function(){
 				$target.addClass('active');
 				$title.html(title);
 
-				carousel_circle_controller();
+				carousel_circle_controller(); // for circle
 			  });
 		})
 
