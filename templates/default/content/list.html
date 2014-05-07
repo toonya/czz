@@ -4,7 +4,7 @@
 <div class="main">
 	<div class="col-left column-border">
     	<div class="crumbs"><a href="{siteurl($siteid)}">首页</a><span> > </span>{catpos($catid)} 列表</div>
-    	{pc:content action="lists" catid="$catid" num="25" order="id DESC" page="$page"}
+    	{pc:content  action="lists" catid="$catid" order="id DESC" page="$page" num="25"}
         <ul class="list lh24 f14">
 {loop $data $r}
 	<li><span class="rt">{date('Y-m-d H:i:s',$r[inputtime])}</span>·<a href="{$r[url]}" target="_blank"{title_style($r[style])}>{$r[title]}</a></li>
@@ -25,7 +25,7 @@
              {pc:content action="hits" catid="$catid" num="10" order="views DESC" cache="3600"}
             <ul class="content digg">
 				{loop $data $r}
-					<li><a href="{$r[url]}" target="_blank">{$r[title]}</a></li>
+					<li><a href="{$r[url]}" target="_blank">{str_cut($r[title],64,'...')}</a></li>
 				{/loop}
             </ul>
             {/pc}
@@ -36,7 +36,7 @@
              {pc:content action="hits" catid="$catid" num="8" order="monthviews DESC" cache="3600"}
             <ul class="content digg">
 				{loop $data $r}
-				<li><a href="{$r[url]}"{title_style($r[style])} class="title" title="{$r[title]}">{str_cut($r[title],56,'...')}</a></li>
+				<li><a href="{$r[url]}"{title_style($r[style])} class="title" title="{$r[title]}">{str_cut($r[title],64,'...')}</a></li>
 				{/loop}
             </ul>
             {/pc}
